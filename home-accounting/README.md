@@ -1,0 +1,30 @@
+# Домашняя бухгалтерия (MVP)
+
+Консольное приложение для совместного и личного учёта доходов, расходов
+и контроля семейного бюджета без лишней суеты.
+
+## Модули
+1. **Transactions Module** — добавление, редактирование и удаление операций
+   (классы `Transaction`, `TransactionService`).
+2. **Budget Module** — список категорий, месячные лимиты и проверка превышения
+   (классы `Category`, `BudgetManager`).
+3. **Analytics Module** — общий баланс, расходы за период, топ-3 самых
+   затратных категорий (классы `AnalyticsService`, `FinancialReport`).
+4. **Data Storage Module** — сохранение истории операций и настроек бюджета
+   в JSON и загрузка при запуске (классы `DataRepository`, `FileStorage`).
+
+## Канбан
+Доска проекта (GitHub Projects): _вставьте сюда ссылку после создания доски_
+(вкладка Projects -> New project -> Board; колонки To do / In progress / Done).
+
+## Запуск
+```bash
+python src/main.py
+```
+
+## Тесты
+```bash
+python -m unittest discover -s tests -v
+```
+
+Требования: Python 3.9+, сторонние пакеты не нужны.
