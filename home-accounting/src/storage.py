@@ -1,4 +1,3 @@
-"""Модуль 4. Хранение данных: DataRepository / FileStorage."""
 import csv
 import io
 import json
@@ -6,7 +5,6 @@ import os
 
 
 class FileStorage:
-    """Сохранение и загрузка состояния приложения в JSON."""
 
     def __init__(self, path="data.json"):
         self.path = path
@@ -28,7 +26,6 @@ class FileStorage:
 
 
 class DataRepository:
-    """Фасад над FileStorage: восстанавливает сервисы и экспортирует CSV."""
 
     def __init__(self, file_storage):
         self.storage = file_storage
@@ -46,7 +43,6 @@ class DataRepository:
         transaction_service._transactions = [Transaction.from_dict(d)
                                              for d in data["transactions"]]
         transaction_service._next_id = data["next_ids"].get("t", 1)
-        # Заменяем список категорий целиком, чтобы не смешать с предустановленными
         budget_manager._categories = [Category.from_dict(d) for d in data["categories"]]
         budget_manager._next_cid = data["next_ids"].get("c", 6)
 
