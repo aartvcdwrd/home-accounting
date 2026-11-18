@@ -1,4 +1,3 @@
-"""Сервисный слой: TransactionService, BudgetManager, AnalyticsService."""
 import csv
 import io
 from datetime import date
@@ -7,7 +6,6 @@ from models import Transaction, Category, INCOME, EXPENSE
 
 
 class TransactionService:
-    """Модуль 1. Добавление, редактирование и удаление операций."""
 
     def __init__(self):
         self._transactions = []
@@ -49,7 +47,6 @@ class TransactionService:
 
 
 class BudgetManager:
-    """Модуль 2. Категории, месячные лимиты и проверка превышения."""
 
     DEFAULT_CATEGORIES = ["Еда", "Подписки", "Транспорт", "Жильё", "Развлечения"]
 
@@ -101,7 +98,6 @@ class BudgetManager:
         return None
 
     def is_over_limit(self, category_name, month, transactions):
-        """Превышен ли лимит по категории за месяц?
 
         month — строка 'YYYY-MM'. Возвращает кортеж (превышено?, потрачено, лимит).
         Лимит не установлен — превышения нет.
@@ -116,8 +112,6 @@ class BudgetManager:
 
 
 class AnalyticsService:
-    """Модуль 3. Баланс, расходы за период, топ-3 категорий."""
-
     def __init__(self, transaction_service):
         self._ts = transaction_service
 
@@ -133,7 +127,6 @@ class AnalyticsService:
                          if t.ttype == INCOME and date_from <= t.tdate <= date_to), 2)
 
     def top_categories(self, date_from=None, date_to=None, n=3):
-        """Топ-n самых затратных категорий за период. По умолчанию — за всё время."""
         sums = {}
         for t in self._ts.all(ttype=EXPENSE):
             if date_from and t.tdate < date_from:
@@ -145,7 +138,6 @@ class AnalyticsService:
         return ranked[:n]
 
     def report(self, date_from=None, date_to=None):
-        """FinancialReport: сводка за период."""
         expenses = self.expenses_in_period(date_from, date_to) if date_from else \
             round(sum(t.amount for t in self._ts.all(ttype=EXPENSE)), 2)
         incomes = self.incomes_in_period(date_from, date_to) if date_from else \
