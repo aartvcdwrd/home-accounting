@@ -1,4 +1,3 @@
-"""Юнит-тесты сервисов и хранилища."""
 import os
 import sys
 import tempfile
