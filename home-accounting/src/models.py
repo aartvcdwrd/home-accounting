@@ -1,4 +1,3 @@
-"""Модели данных: Transaction и Category."""
 from datetime import date
 
 INCOME = "income"
@@ -6,7 +5,6 @@ EXPENSE = "expense"
 
 
 class Transaction:
-    """Операция: сумма, категория, дата, тип (доход/расход), комментарий."""
 
     def __init__(self, amount, category, ttype, comment="", tdate=None, tid=None):
         if amount is None or amount <= 0:
@@ -36,12 +34,10 @@ class Transaction:
                    d.get("tdate"), d.get("tid"))
 
     def signed_amount(self):
-        """Доход со знаком плюс, расход — минус."""
         return self.amount if self.ttype == INCOME else -self.amount
 
 
 class Category:
-    """Категория трат с опциональным месячным лимитом."""
 
     def __init__(self, name, limit=None, cid=None):
         self.cid = cid
